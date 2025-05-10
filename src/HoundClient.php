@@ -42,6 +42,10 @@ final class HoundClient
             $count
         );
 
+        if (!$event = $this->applyFilters($event)) {
+            return;
+        }
+
         if ($message !== null) {
             $event = $event->withMessage($message);
         }
