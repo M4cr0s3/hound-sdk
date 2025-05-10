@@ -15,5 +15,21 @@ final readonly class Metadata
         public string $function,
         public string $class,
         public string $type,
+        /** @var array<string, mixed> */
+        public array $context = [],
     ) {}
+
+    public function withContext(array $context): self
+    {
+        return new self(
+            $this->fingerprint,
+            $this->stacktrace,
+            $this->file,
+            $this->line,
+            $this->function,
+            $this->class,
+            $this->type,
+            array_merge($this->context, $context)
+        );
+    }
 }
